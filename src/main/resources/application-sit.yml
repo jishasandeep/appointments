@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: MyAppointments
+  data:
+    mongodb:
+      uri: mongodb:mongodb://appointment.sit.com:27017/appointmentDB
+
