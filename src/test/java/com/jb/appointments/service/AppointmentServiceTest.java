@@ -19,9 +19,9 @@ class AppointmentServiceTest {
     void testAppointmentService() {
 
         Appointment appointment1 = new Appointment();
-        appointment1.setId("id1");
+        appointment1.setId(1L);
         Appointment appointment2 = new Appointment();
-        appointment2.setId("id2");
+        appointment2.setId(2L);
 
         Mockito.when(appointmentRepository.findAll()).thenReturn(List.of(appointment1,appointment2));
         List<Appointment> all = appointmentService.findAll();
