@@ -19,7 +19,7 @@ public class AppointmentService {
         return appointmentRepository.findAll();
     }
 
-    public Optional<Appointment> findById(String id) {
+    public Optional<Appointment> findById(Long id) {
         return appointmentRepository.findById(id);
     }
 
@@ -27,7 +27,7 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Long id) {
         appointmentRepository.deleteById(id);
     }
 }

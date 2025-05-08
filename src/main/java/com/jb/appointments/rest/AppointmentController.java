@@ -37,7 +37,7 @@ public class AppointmentController {
 
     @GetMapping("/{id}")
     @Cacheable(value = "appointments", key = "#p0")
-    public ResponseEntity<Appointment> getAppointmentById(@PathVariable("id") String id) {
+    public ResponseEntity<Appointment> getAppointmentById(@PathVariable("id") Long id) {
         System.out.println("executing getAppointmentById!");
         if (id == null) {
             throw new IllegalArgumentException("Appointment ID cannot be null");
@@ -48,14 +48,14 @@ public class AppointmentController {
     }
 
     @PostMapping
-    @CacheEvict("appointments")
+    @CachePut("appointments")
     public Appointment createAppointment(@RequestBody Appointment appointment) {
         return appointmentService.save(appointment);
     }
 
     @DeleteMapping("/{id}")
     @CacheEvict(value = "appointments", key = "#p0")
-    public ResponseEntity<Void> deleteAppointment(@PathVariable("id") String id) {
+    public ResponseEntity<Void> deleteAppointment(@PathVariable("id") Long id) {
         appointmentService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

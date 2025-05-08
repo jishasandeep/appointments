@@ -2,9 +2,6 @@ spring:
   application:
     name: MyAppointments
     prefix: ap-dev
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/appointmentDB
   datasource:
     url: jdbc:sqlserver://jbappsqlserver.database.windows.net:1433;database=appointmentsdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
