@@ -3,7 +3,7 @@ spring:
     name: MyAppointments
     prefix: ap-dev
   datasource:
-    url: jdbc:sqlserver://jbappsqlserver.database.windows.net:1433;database=appointmentsdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    url: ${DB_CONNECTION_STRING}
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     username: adminuser
     password: Passw0rd
