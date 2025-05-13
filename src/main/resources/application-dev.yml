@@ -18,7 +18,10 @@ spring:
       properties:
         hibernate:
           format_sql: true
-
+app:
+  auth:
+    user: user
+    password: password
 
 #  devtools:
 #    restart:
