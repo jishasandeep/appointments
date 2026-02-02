@@ -3,10 +3,10 @@ spring:
     name: MyAppointments
     prefix: ap-dev
   datasource:
-    url: jdbc:sqlserver://jbappsqlserver.database.windows.net:1433;database=appointmentsdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: adminuser
-    password: Passw0rd
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
   h2:
     console:
       enabled: true
@@ -14,10 +14,11 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       properties:
         hibernate:
           format_sql: true
+          dialect: org.hibernate.dialect.H2Dialect
 app:
   auth:
     user: user

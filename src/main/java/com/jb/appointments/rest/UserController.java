@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/public/api/users")
 @Tag(name="User Service Apis", description = "Operation related to users")
 public class UserController {
 

@@ -2,19 +2,25 @@ package com.jb.appointments.service;
 
 import com.jb.appointments.model.Appointment;
 import com.jb.appointments.repository.AppointmentRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 class AppointmentServiceTest {
+    @Autowired
+    private AppointmentService service;
 
     private final AppointmentRepository appointmentRepository = Mockito.mock(AppointmentRepository.class);
     private final AppointmentService appointmentService = new AppointmentService(appointmentRepository);
 
-
+    
     @Test
     void testAppointmentService() {
 

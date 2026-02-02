@@ -8,11 +8,16 @@ spring:
         secret:
           property-sources[0]:
             endpoint: https://az-db-creds.vault.azure.net/
+#  datasource:
+#    url: ${DB_CONNECTION_STRING}
+#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    username: adminuser
+#    password: Passw0rd
   datasource:
-    url: ${DB_CONNECTION_STRING}
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: adminuser
-    password: Passw0rd
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
   h2:
     console:
       enabled: true
@@ -28,6 +33,8 @@ app:
   auth:
     user: user
     password: password
+jackson:
+  date-format: yyyy-MM-dd HH:mm:ss
 
 #  devtools:
 #    restart:

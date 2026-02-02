@@ -1,5 +1,6 @@
 package com.jb.appointments.config;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@Data
 public class SecurityConfig {
     @Value("${app.auth.user}")
     private String userName;
@@ -42,8 +44,8 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
-                .username(userName)
-                .password(password)
+                .username(getUserName())
+                .password(getPassword())
                 .roles("USER")
                 .build();
         UserDetails admin = User.withDefaultPasswordEncoder()

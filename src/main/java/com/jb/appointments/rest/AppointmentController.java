@@ -5,10 +5,13 @@ import com.jb.appointments.service.AppointmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/appointments")
@@ -33,12 +36,14 @@ public class AppointmentController {
     }
 
     @GetMapping("/{id}")
-   // @Cacheable(value = "appointments", key = "#p0")
+    @Cacheable(value = "appointments", key = "#p0")
     public ResponseEntity<Appointment> getAppointmentById(@PathVariable("id") Long id) {
         System.out.println("executing getAppointmentById!");
         if (id == null) {
             throw new IllegalArgumentException("Appointment ID cannot be null");
         }
+        Optional<Appointment> optional = appointmentService.findById(id);
+       // optional.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
         return appointmentService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -46,13 +51,14 @@ public class AppointmentController {
 
     @PostMapping
     //@CachePut("appointments")
-    public Appointment createAppointment(@RequestBody Appointment appointment) {
-        return appointmentService.save(appointment);
+    public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
+        appointmentService.save(appointment);
+        return ResponseEntity.accepted().build();
     }
 
     @DeleteMapping("/{id}")
     //@CacheEvict(value = "appointments", key = "#p0")
-    public ResponseEntity<Void> deleteAppointment(@PathVariable("id") Long id) {
+    public ResponseEntity<HttpStatus> deleteAppointment(@PathVariable("id") Long id) {
         appointmentService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
