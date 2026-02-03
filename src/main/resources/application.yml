@@ -2,4 +2,4 @@ spring:
   application:
     name: MyAppointments
   profiles:
-    active: dev
+    active: prod
